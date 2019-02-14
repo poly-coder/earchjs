@@ -1,14 +1,16 @@
 version: '3.7'
 
 services:
-  mongodb:
+  mongo:
     image: mongo:4
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 27017:27017
     volumes:
-      -
+      - mongodb:/data/db
 
   mongodb-express:
     image: mongo-express
@@ -18,3 +20,6 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+volumes:
+  mongodb:
